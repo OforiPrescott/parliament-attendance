@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Brand tokens (HSL channels). Defaults draw on Ghana's national palette —
+ * deep green, gold and red — on a warm, paper-like neutral. Replace these
+ * values with those in Parliament's corporate identity manual when supplied.
+ */
+:root {
+  --background: 40 23% 97%;
+  --foreground: 160 25% 9%;
+  --card: 0 0% 100%;
+  --card-foreground: 160 25% 9%;
+  --muted: 40 14% 93%;
+  --muted-foreground: 160 6% 40%;
+  --border: 40 12% 87%;
+  --input: 40 10% 82%;
+  --ring: 157 77% 22%;
+
+  --primary: 157 77% 18%;
+  --primary-foreground: 45 60% 97%;
+  --primary-soft: 152 38% 93%;
+
+  --gold: 41 62% 47%;
+  --gold-foreground: 40 60% 12%;
+  --gold-soft: 44 75% 92%;
+
+  --destructive: 2 68% 43%;
+  --destructive-foreground: 0 0% 100%;
+  --destructive-soft: 4 80% 95%;
+
+  --success: 150 62% 30%;
+  --success-soft: 145 45% 92%;
+  --warning: 32 92% 40%;
+  --warning-soft: 40 95% 91%;
+  --info: 210 65% 40%;
+  --info-soft: 210 70% 94%;
+
+  --sidebar: 160 55% 9%;
+  --sidebar-foreground: 45 25% 92%;
+  --sidebar-muted: 155 12% 62%;
+  --sidebar-accent: 158 45% 15%;
+}
+
+@layer base {
+  * { @apply border-border; }
+  html { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+  body { @apply bg-background text-foreground font-sans text-[14px]; font-feature-settings: "tnum" 1, "cv11" 1; }
+  h1, h2, h3 { @apply tracking-tight; }
+  :focus-visible { @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background; }
+  ::selection { background: hsl(var(--gold) / 0.3); }
+}
+
+@layer components {
+  .kente-rule {
+    height: 4px;
+    background: repeating-linear-gradient(90deg,
+      hsl(var(--gold)) 0 28px, hsl(var(--primary)) 28px 40px,
+      hsl(var(--destructive)) 40px 46px, hsl(var(--primary)) 46px 58px);
+  }
+  .scroll-thin { scrollbar-width: thin; scrollbar-color: hsl(var(--border)) transparent; }
+  .num { font-variant-numeric: tabular-nums; }
+}
+
+@media print {
+  aside, header, .no-print { display: none !important; }
+  main { padding: 0 !important; }
+  body { background: white; }
+}
